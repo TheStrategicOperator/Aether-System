@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AETHER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#060606;--surface:#0e0e0e;--surface2:#141414;
+  --border:rgba(255,255,255,0.055);--border-gold:rgba(200,169,110,0.22);
+  --text:#ddd;--dim:rgba(255,255,255,0.28);--muted:#444;
+  --gold:#c8a96e;--gold-glow:rgba(200,169,110,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden;cursor:default;}
+
+/* GRID */
+.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:72px 72px;mask-image:radial-gradient(ellipse 80% 80% at 50% 0%,black 40%,transparent 100%);}
+.bg-glow{position:fixed;top:-30vh;left:50%;transform:translateX(-50%);width:900px;height:600px;
+  background:radial-gradient(ellipse,rgba(200,169,110,0.05) 0%,transparent 68%);pointer-events:none;z-index:0;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:62px;padding:0 56px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid transparent;transition:all 0.45s;}
+nav.filled{background:rgba(6,6,6,0.88);backdrop-filter:blur(16px);border-color:var(--border);}
+.nav-logo{font-family:'EB Garamond',serif;font-size:17px;letter-spacing:0.18em;color:var(--gold);text-decoration:none;text-transform:uppercase;}
+.nav-links{display:flex;gap:36px;align-items:center;}
+.nav-links a{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-enter{padding:9px 24px;border:1px solid var(--border-gold);color:var(--gold);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.25s;}
+.nav-enter:hover{background:var(--gold-glow);}
+
+/* HERO */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 40px;}
+.hero-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);opacity:0;animation:up 0.9s ease 0.15s forwards;margin-bottom:36px;}
+.hero-h1{font-family:'EB Garamond',serif;font-size:clamp(44px,7vw,88px);font-weight:400;line-height:1.05;color:#fff;max-width:820px;opacity:0;animation:up 0.9s ease 0.35s forwards;margin-bottom:28px;}
+.hero-h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{font-size:15px;color:var(--dim);line-height:1.85;max-width:400px;opacity:0;animation:up 0.9s ease 0.55s forwards;margin-bottom:52px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;opacity:0;animation:up 0.9s ease 0.75s forwards;}
+.btn{padding:14px 38px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:all 0.25s;display:inline-block;cursor:pointer;border:none;}
+.btn-gold{background:var(--gold);color:#060606;}
+.btn-gold:hover{background:#d9b97e;}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+.btn-outline:hover{border-color:rgba(255,255,255,0.14);color:#fff;}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;animation:up 0.9s ease 1.1s forwards;}
+.scroll-tick{width:1px;height:42px;background:linear-gradient(to bottom,var(--gold),transparent);animation:flicker 2.2s ease infinite;}
+.scroll-lbl{font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);}
+
+/* STATEMENT BAR */
+.stmt{position:relative;z-index:1;padding:72px 56px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center;}
+.stmt-text{font-family:'EB Garamond',serif;font-size:clamp(20px,3vw,30px);font-weight:400;line-height:1.6;color:var(--dim);max-width:640px;margin:0 auto;}
+.stmt-text em{color:rgba(255,255,255,0.7);font-style:italic;}
+
+/* SYSTEM */
+.system{position:relative;z-index:1;padding:100px 56px;}
+.sec-tag{font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:block;font-family:'DM Mono',monospace;}
+.sec-h{font-family:'EB Garamond',serif;font-size:clamp(26px,3vw,40px);font-weight:400;color:#fff;margin-bottom:56px;line-height:1.25;}
+.system-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+.sys-card{background:var(--black);padding:48px 44px;transition:background 0.3s;}
+.sys-card:hover{background:var(--surface);}
+.sys-card-lbl{font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;display:block;font-family:'DM Mono',monospace;}
+.sys-card-name{font-family:'EB Garamond',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:16px;line-height:1.2;}
+.sys-card-desc{font-size:13px;color:var(--dim);line-height:1.8;max-width:340px;}
+.sys-card-link{display:inline-flex;align-items:center;gap:9px;margin-top:28px;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);text-decoration:none;transition:gap 0.2s;}
+.sys-card-link:hover{gap:14px;}
+
+/* SIGNALS PREVIEW */
+.sig-preview{position:relative;z-index:1;padding:100px 56px;border-top:1px solid var(--border);}
+.sig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:52px;}
+.sig-card{background:var(--black);padding:38px 34px;cursor:pointer;transition:background 0.3s;}
+.sig-card:hover{background:var(--surface);}
+.sig-n{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:20px;display:block;letter-spacing:0.1em;}
+.sig-stmt{font-family:'EB Garamond',serif;font-size:18px;font-weight:400;color:#fff;line-height:1.45;margin-bottom:14px;}
+.sig-body{font-size:12px;color:var(--muted);line-height:1.75;}
+
+/* CLOSE */
+.close-section{position:relative;z-index:1;padding:140px 56px;text-align:center;border-top:1px solid var(--border);}
+.close-lines{margin-bottom:52px;}
+.close-line{font-family:'EB Garamond',serif;font-size:clamp(22px,3.5vw,40px);font-weight:400;line-height:1.55;}
+.close-line.off{color:var(--dim);}
+.close-line.on{color:#fff;}
+
+/* FOOTER */
+footer{position:relative;z-index:1;padding:28px 56px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.f-logo{font-family:'EB Garamond',serif;font-size:14px;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase;}
+.f-links{display:flex;gap:28px;}
+.f-links a{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.f-links a:hover{color:var(--text);}
+.f-copy{font-size:10px;color:var(--muted);letter-spacing:0.06em;}
+
+@keyframes up{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes flicker{0%,100%{opacity:0.3;}50%{opacity:0.9;}}
+
+@media(max-width:900px){
+  nav{padding:0 20px;}.hero{padding:80px 22px;}
+  .stmt{padding:56px 22px;}.system{padding:80px 22px;}
+  .system-grid{grid-template-columns:1fr;}
+  .sig-preview{padding:80px 22px;}.sig-grid{grid-template-columns:1fr;}
+  .close-section{padding:100px 22px;}
+  footer{padding:24px;flex-direction:column;gap:18px;text-align:center;}.f-links{justify-content:center;}
+  .nav-links{gap:20px;}
+}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<nav id="nav">
+  <a class="nav-logo" href="index.html">Aether</a>
+  <div class="nav-links">
+    <a href="lens.html">The Lens</a>
+    <a href="signals.html">Signals</a>
+    <a href="about.html">About</a>
+    <a class="nav-enter" href="lens.html">Enter The Lens</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <span class="hero-tag">// perception system v2</span>
+  <h1 class="hero-h1">We don't teach business.<br>We teach how to <em>see</em><br>what others miss.</h1>
+  <p class="hero-sub">Most people don't fail from lack of effort. They fail from misreading reality.</p>
+  <div class="hero-actions">
+    <a href="lens.html" class="btn btn-gold">View Through The Lens</a>
+    <a href="signals.html" class="btn btn-outline">Read Signals</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-tick"></div>
+    <span class="scroll-lbl">Continue</span>
+  </div>
+</section>
+
+<div class="stmt">
+  <p class="stmt-text">AETHER is not a course. It is a system for <em>seeing clearly</em> before you move. That distinction is everything.</p>
+</div>
+
+<section class="system">
+  <span class="sec-tag">// the system</span>
+  <h2 class="sec-h">Two things. One purpose.</h2>
+  <div class="system-grid">
+    <div class="sys-card">
+      <span class="sys-card-lbl">The Tool</span>
+      <div class="sys-card-name">AETHER Lens</div>
+      <p class="sys-card-desc">The analytical system used to break down ideas, decisions, and opportunities. Input a situation. The Lens exposes what you are not seeing. Direct. Surgical. No encouragement.</p>
+      <a href="lens.html" class="sys-card-link">Enter The Lens →</a>
+    </div>
+    <div class="sys-card">
+      <span class="sys-card-lbl">What You Develop</span>
+      <div class="sys-card-name">The Eye</div>
+      <p class="sys-card-desc">Not a feature. What happens to you after repeated exposure to clear signal. The Eye cannot be taught. It is built through honest analysis — applied consistently, over time.</p>
+      <a href="signals.html" class="sys-card-link">Read Signals →</a>
+    </div>
+  </div>
+</section>
+
+<section class="sig-preview">
+  <span class="sec-tag">// signal library</span>
+  <h2 class="sec-h">Ideas that challenge, not comfort.</h2>
+  <div class="sig-grid">
+    <div class="sig-card" onclick="location.href='signals.html'">
+      <span class="sig-n">001</span>
+      <div class="sig-stmt">Consistency doesn't matter if you're consistently wrong.</div>
+      <p class="sig-body">Repetition amplifies the direction you're already moving. Make sure the direction is right before you commit to it.</p>
+    </div>
+    <div class="sig-card" onclick="location.href='signals.html'">
+      <span class="sig-n">002</span>
+      <div class="sig-stmt">The market you're in matters more than how good you are.</div>
+      <p class="sig-body">A great operator in a shrinking market loses. Position matters more than execution. You can't outwork a structural disadvantage.</p>
+    </div>
+    <div class="sig-card" onclick="location.href='signals.html'">
+      <span class="sig-n">003</span>
+      <div class="sig-stmt">If validation feels good, it probably isn't real.</div>
+      <p class="sig-body">Real validation is uncomfortable. It reveals what doesn't work. If everyone is agreeing, you're asking the wrong questions.</p>
+    </div>
+  </div>
+</section>
+
+<section class="close-section">
+  <div class="close-lines">
+    <p class="close-line off">The wrong move,</p>
+    <p class="close-line off">executed perfectly,</p>
+    <p class="close-line on">still fails.</p>
+  </div>
+  <a href="lens.html" class="btn btn-gold">Start Seeing Clearly</a>
+</section>
+
+<footer>
+  <span class="f-logo">Aether</span>
+  <div class="f-links">
+    <a href="lens.html">Lens</a>
+    <a href="signals.html">Signals</a>
+    <a href="about.html">About</a>
+  </div>
+  <span class="f-copy">© 2026 AETHER</span>
+</footer>
+
+<script>
+window.addEventListener('scroll',function(){
+  document.getElementById('nav').classList.toggle('filled',scrollY>30);
+});
+</script>
+</body>
+</html>
