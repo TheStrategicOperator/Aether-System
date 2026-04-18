@@ -7,57 +7,56 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-:root{--black:#060606;--surface:#0e0e0e;--border:rgba(255,255,255,0.055);--border-gold:rgba(200,169,110,0.22);--text:#ddd;--dim:rgba(255,255,255,0.28);--muted:#444;--gold:#c8a96e;--gold-dim:rgba(200,169,110,0.09);}
+:root{--bg:#0A0F1C;--surface:#0f1422;--border:rgba(255,255,255,0.05);--border-gold:rgba(198,169,107,0.2);--text:#e2e8f0;--dim:rgba(255,255,255,0.26);--muted:#3a4259;--gold:#C6A96B;--gold-soft:rgba(198,169,107,0.07);}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--black);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.65;}
-.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 80% 80% at 50% 0%,black 40%,transparent 100%);}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.65;}
+.grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(255,255,255,0.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.028) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 90% 70% at 50% 0,rgba(0,0,0,0.5) 0%,transparent 100%);}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;padding:0 52px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,6,6,0.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
-.nav-logo{font-family:'EB Garamond',serif;font-size:17px;letter-spacing:0.18em;color:var(--gold);text-decoration:none;text-transform:uppercase;}
-.nav-r{display:flex;gap:28px;align-items:center;}
-.nav-r a{font-size:11px;letter-spacing:0.11em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
-.nav-r a:hover{color:var(--text);}
-.nav-r a.on{color:var(--gold);}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;padding:0 52px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,15,28,0.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:'EB Garamond',serif;font-size:16px;letter-spacing:0.2em;color:var(--gold);text-decoration:none;text-transform:uppercase;}
+.nav-r{display:flex;gap:28px;}
+.nav-r a{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.nav-r a:hover,.nav-r a.on{color:var(--gold);}
 
 /* MANIFESTO */
-.manifesto{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:160px 52px 100px;}
-.m-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold);margin-bottom:52px;display:block;opacity:0;animation:up 0.8s ease 0.1s forwards;}
-.m-line{font-family:'EB Garamond',serif;font-size:clamp(20px,3vw,32px);font-weight:400;line-height:1.5;margin-bottom:10px;opacity:0;}
+.mfst{position:relative;z-index:1;max-width:660px;margin:0 auto;padding:168px 52px 110px;}
+.m-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(198,169,107,0.45);margin-bottom:52px;display:block;opacity:0;animation:up 0.8s ease 0.1s forwards;}
+.m-line{font-family:'EB Garamond',serif;font-size:clamp(19px,2.8vw,32px);font-weight:400;line-height:1.5;margin-bottom:8px;display:block;opacity:0;}
 .m-line.off{color:var(--dim);}
 .m-line.on{color:#fff;}
 .m-line.gold{color:var(--gold);font-style:italic;}
-.m-gap{height:40px;}
+.m-gap{display:block;height:36px;}
 
 /* PRINCIPLES */
-.principles{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 52px 120px;}
+.prnc{position:relative;z-index:1;max-width:660px;margin:0 auto;padding:0 52px 120px;}
 .p-block{border-top:1px solid var(--border);padding:40px 0;}
-.p-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:block;}
-.p-title{font-family:'EB Garamond',serif;font-size:21px;font-weight:400;color:#fff;margin-bottom:14px;line-height:1.25;}
-.p-text{font-size:13px;color:var(--muted);line-height:1.9;max-width:520px;}
+.p-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:block;}
+.p-h{font-family:'EB Garamond',serif;font-size:21px;font-weight:400;color:#fff;margin-bottom:16px;line-height:1.25;}
+.p-txt{font-size:13px;color:var(--dim);line-height:1.95;max-width:520px;}
 
 /* END */
-.end-block{position:relative;z-index:1;padding:80px 52px;border-top:1px solid var(--border);display:flex;flex-direction:column;align-items:center;text-align:center;gap:32px;}
-.end-txt{font-family:'EB Garamond',serif;font-size:clamp(20px,2.5vw,30px);font-weight:400;color:var(--dim);line-height:1.5;}
-.end-txt em{color:#fff;font-style:normal;}
-.end-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
-.btn-gold{padding:14px 38px;background:var(--gold);color:#060606;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.22s;display:inline-block;}
-.btn-gold:hover{background:#d9b97e;}
-.btn-out{padding:13px 38px;background:transparent;color:var(--text);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border);transition:all 0.22s;display:inline-block;}
-.btn-out:hover{border-color:rgba(255,255,255,0.12);color:#fff;}
+.end{position:relative;z-index:1;padding:80px 52px;border-top:1px solid var(--border);text-align:center;}
+.end-line{font-family:'EB Garamond',serif;font-size:clamp(18px,2.4vw,28px);font-weight:400;color:var(--dim);line-height:1.5;margin-bottom:8px;}
+.end-line em{color:#fff;font-style:normal;}
+.end-acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:44px;}
+.btn-solid{padding:13px 38px;background:var(--gold);color:#0A0F1C;font-family:'DM Mono',monospace;font-size:10px;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;text-decoration:none;transition:background 0.22s;display:inline-block;}
+.btn-solid:hover{background:#d4b876;}
+.btn-ghost{padding:12px 38px;background:transparent;color:var(--text);font-family:'DM Mono',monospace;font-size:10px;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border);transition:all 0.22s;display:inline-block;}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.1);color:#fff;}
 
-footer{position:relative;z-index:1;padding:28px 52px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
-.f-logo{font-family:'EB Garamond',serif;font-size:14px;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase;}
-.f-copy{font-size:10px;color:var(--muted);}
+footer{position:relative;z-index:1;padding:26px 52px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.f-logo{font-family:'EB Garamond',serif;font-size:14px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;}
+.f-copy{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
 
-@keyframes up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-@media(max-width:768px){nav{padding:0 18px;}.manifesto{padding:108px 20px 80px;}.principles{padding:0 20px 80px;}.end-block{padding:60px 20px;}footer{padding:22px;flex-direction:column;gap:14px;text-align:center;}}
+@keyframes up{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:768px){nav{padding:0 18px;}.mfst{padding:108px 20px 80px;}.prnc{padding:0 20px 80px;}.end{padding:60px 20px;}footer{padding:22px;flex-direction:column;gap:14px;text-align:center;}}
 </style>
 </head>
 <body>
-<div class="bg-grid"></div>
+<div class="grid"></div>
 
 <nav>
-  <a class="nav-logo" href="index.html">Aether</a>
+  <a class="logo" href="index.html">Aether</a>
   <div class="nav-r">
     <a href="lens.html">The Lens</a>
     <a href="signals.html">Signals</a>
@@ -65,50 +64,51 @@ footer{position:relative;z-index:1;padding:28px 52px;border-top:1px solid var(--
   </div>
 </nav>
 
-<div class="manifesto" id="manifesto">
+<div class="mfst" id="mfst">
   <span class="m-tag">// why this exists</span>
-  <p class="m-line off">AETHER exists because</p>
-  <p class="m-line on">most people are building blind.</p>
-  <div class="m-gap"></div>
-  <p class="m-line off">They confuse movement with progress.</p>
-  <p class="m-line off">Structure with success.</p>
-  <p class="m-line off">Ideas with opportunity.</p>
-  <div class="m-gap"></div>
-  <p class="m-line on">We focus on perception before action.</p>
-  <div class="m-gap"></div>
-  <p class="m-line off">Because the wrong move,</p>
-  <p class="m-line off">executed perfectly,</p>
-  <p class="m-line gold">still fails.</p>
+  <span class="m-line off">AETHER exists because</span>
+  <span class="m-line on">most people are building blind.</span>
+  <span class="m-gap"></span>
+  <span class="m-line off">They confuse movement with progress.</span>
+  <span class="m-line off">Structure with success.</span>
+  <span class="m-line off">Ideas with opportunity.</span>
+  <span class="m-gap"></span>
+  <span class="m-line on">We focus on perception before action.</span>
+  <span class="m-gap"></span>
+  <span class="m-line off">Because the wrong move,</span>
+  <span class="m-line off">executed perfectly,</span>
+  <span class="m-line gold">still fails.</span>
 </div>
 
-<div class="principles">
+<div class="prnc">
   <div class="p-block">
-    <span class="p-tag">The Lens</span>
-    <h2 class="p-title">A system for seeing, not deciding.</h2>
-    <p class="p-text">The AETHER Lens does not tell you what to do. It exposes what is actually present in a situation — the assumptions you haven't tested, the risks you haven't named, the gaps between what you believe and what is true. Most tools optimize for output. The Lens optimizes for accuracy of perception. What you do with the analysis is your decision. Seeing clearly is ours.</p>
+    <span class="p-tag">// The Lens</span>
+    <h2 class="p-h">A system for seeing. Not deciding.</h2>
+    <p class="p-txt">The Lens does not tell you what to do. It exposes what is actually present — the assumptions untested, the risks unnamed, the gap between what you believe and what is true. Most tools optimize for output. The Lens optimizes for accuracy of perception. What you do with the output is your decision. Seeing clearly is ours.</p>
   </div>
   <div class="p-block">
-    <span class="p-tag">The Eye</span>
-    <h2 class="p-title">Not a feature. What you become.</h2>
-    <p class="p-text">The Eye is not something AETHER gives you. It is what develops after repeated honest analysis. The pattern recognition that takes the Lens a few minutes to surface — after enough use, it begins happening instinctively. That is The Eye. It cannot be taught in a course or transferred in a framework. It is built. Through exposure to clear signal, applied consistently, across different situations, over time.</p>
+    <span class="p-tag">// The Eye</span>
+    <h2 class="p-h">Not a feature. What you become.</h2>
+    <p class="p-txt">The Eye is not something AETHER gives you. It is what develops after repeated honest analysis across different situations. The pattern recognition that takes the Lens a few minutes eventually starts happening instinctively. That is The Eye. It cannot be downloaded. It cannot be taught. It is built through use, applied consistently, over time, without shortcuts.</p>
   </div>
   <div class="p-block">
-    <span class="p-tag">Signal</span>
-    <h2 class="p-title">Pattern, not information.</h2>
-    <p class="p-text">Signal is not data. It is not content. Signal is what remains true across many different situations once all the context-specific noise is removed. The Signals library is not a blog. Each entry is a structural observation — identified through analysis of real decisions — stripped of everything that does not generalize. These are patterns. The Eye learns to see them automatically.</p>
+    <span class="p-tag">// Signal</span>
+    <h2 class="p-h">Pattern. Not information.</h2>
+    <p class="p-txt">Signal is not data. It is not content. Signal is what remains true across many situations once all context-specific noise is removed. The Signals library is not a blog. Each entry is a structural observation stripped of everything that does not generalize. These are patterns The Eye learns to see automatically — before they become expensive to miss.</p>
   </div>
   <div class="p-block">
-    <span class="p-tag">Who This Is For</span>
-    <h2 class="p-title">Operators who want to see clearly.</h2>
-    <p class="p-text">AETHER is not for people who want to be told it is possible. It is not for people looking for a plan or a framework or permission. It is for people who are already moving and want to move with more accuracy. If the Lens analysis is uncomfortable, that is the system working correctly. Comfort is not the goal. Clarity is.</p>
+    <span class="p-tag">// Who This Is For</span>
+    <h2 class="p-h">Operators who want to see clearly.</h2>
+    <p class="p-txt">Not for people who want to be told it is possible. Not for people seeking permission. For people already moving who want to move with more accuracy. If the Lens output is uncomfortable, the system is working correctly. Comfort is not the product. Clarity is.</p>
   </div>
 </div>
 
-<div class="end-block">
-  <p class="end-txt">The system is ready.<br><em>What you bring to it determines what you get from it.</em></p>
-  <div class="end-actions">
-    <a href="lens.html" class="btn-gold">Enter The Lens</a>
-    <a href="signals.html" class="btn-out">Read Signals</a>
+<div class="end">
+  <p class="end-line">The system is ready.</p>
+  <p class="end-line"><em>What you bring to it determines what you get from it.</em></p>
+  <div class="end-acts">
+    <a href="lens.html" class="btn-solid">Enter The Lens</a>
+    <a href="signals.html" class="btn-ghost">Read Signals</a>
   </div>
 </div>
 
@@ -119,8 +119,8 @@ footer{position:relative;z-index:1;padding:28px 52px;border-top:1px solid var(--
 
 <script>
 var lines=document.querySelectorAll('.m-line');
-var delays=[0.2,0.35,0.55,0.68,0.78,0.92,1.08,1.2,1.3,1.45,1.58];
-lines.forEach(function(l,i){l.style.animation='up 0.75s ease '+(delays[i]||0.2+i*0.1)+'s forwards';});
+var ds=[0.2,0.34,0.52,0.64,0.74,0.88,1.04,1.16,1.26,1.4,1.52];
+lines.forEach(function(l,i){l.style.animation='up 0.75s ease '+(ds[i]||0.2)+'s forwards';});
 </script>
 </body>
 </html>
